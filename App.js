@@ -16,7 +16,7 @@ export default function App() {
             onChangeText={onChangeText}
             placeholder='Todo'
           />
-  
+          <Button title='Add'/>
         </View>
       </View>
    </View>
