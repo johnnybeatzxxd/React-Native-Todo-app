@@ -7,10 +7,17 @@ import { v4 as uuidv4 } from 'uuid';
 export default function App() {
   const [text, onChangeText] = React.useState('');
   const [todos, setTodos] = React.useState([]);
-  function AddTodo(){
-    text != '' ? setTodos(text) : null
-    console.log(todos);
-    onChangeText("");
+
+  function AddTodo() {
+    if (text !== '') {
+      setTodos([...todos, text]);
+      onChangeText("");
+    }
+  }
+
+  function deleteTodo(index) {
+    const newTodos = todos.filter((_, idx) => idx !== index);
+    setTodos(newTodos);
   }
 
   return (
@@ -31,7 +38,7 @@ export default function App() {
           {todos.map((todo,idx)=>(
             <View  key={idx} style={styles.todo}>
               <Text >{todo}</Text>
-              <Button title='delete' style={{width:50}} onPress={()=>todos.splice(idx,1)}/>
+              <Button title='delete' style={{width:50}} onPress={() => deleteTodo(idx)}/>
             </View>
             ))}
           
